@@ -1011,7 +1011,7 @@ int addCount = 10;
                 self.manualButotn.tag = 1000;
                 [QMThemeManager shared].isHiddenEvaluateBtn = YES;
                 self.isAssociationInput = NO;
-                [QMThemeManager shared].isHiddenAddBtn = YES;
+//                [QMThemeManager shared].isHiddenAddBtn = NO;
                 [self.chatInputView refreshInputView];
                 [self setCannotSelectFingerAndMutiSelect];
                 [QMConnect sdkUpdateFingerMessageCannotSelected:YES];

@@ -174,7 +174,6 @@ CGFloat kChatDateHeight = 45.0;
     self.message = model;
 
     [self setConstraintMaker:model];
-    [self setMessageIsRead:model.isRead];
     
     self.timeLabel.hidden = !model.showDate;
     
@@ -295,6 +294,7 @@ CGFloat kChatDateHeight = 45.0;
         }];
         
     }else {
+        
         self.serviceLab.text =  @"";
         NSString *headerUrl = model.visitorHeadImg ? : @"";
         if ([headerUrl.stringByRemovingPercentEncoding isEqualToString:headerUrl]) {
@@ -341,12 +341,14 @@ CGFloat kChatDateHeight = 45.0;
             make.right.equalTo(self.bubblesBgView.mas_left).offset(-10);
         }];
         
+        [self setMessageIsRead:model.isRead];
     }
     
     [self changeMessageStatus:model];
 }
 
 - (void)setMessageIsRead:(NSString *)isRead {
+    
     if ([isRead isEqualToString:@"1"]) {
         self.readStatus.image = [UIImage imageNamed:@"QMChat_Read_Icon"];
     } else {
@@ -368,6 +370,7 @@ CGFloat kChatDateHeight = 45.0;
         self.sendStatus.hidden = YES;
         if ([QMThemeManager shared].isShowRead &&
             [model.status isEqualToString:@"0"]) {
+            [self removeSendingAnimation];
             self.readStatus.hidden = NO;
         }
         else {
@@ -395,9 +398,11 @@ CGFloat kChatDateHeight = 45.0;
             self.message.status = status;
             if ([status isEqualToString:@"0"]) {
                 self.sendStatus.hidden = YES;
+                self.readStatus.hidden = NO;
             }else if ([status isEqualToString:@"1"]) {
                 self.sendStatus.hidden = NO;
                 self.sendStatus.enabled = YES;
+                self.readStatus.hidden = YES;
                 [self removeSendingAnimation];
             } else if ([status isEqualToString:@"2"]) {
                 self.sendStatus.hidden = NO;

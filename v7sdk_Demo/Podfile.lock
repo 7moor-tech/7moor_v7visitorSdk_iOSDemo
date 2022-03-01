@@ -6,6 +6,11 @@ PODS:
   - HappyDNS (0.3.17)
   - Masonry (1.1.0)
   - MJRefresh (3.6.1)
+  - MoorV7SDK (1.5.0):
+    - FMDB (~> 2.7.5)
+    - Qiniu (~> 8.2.1)
+    - SocketRocket (~> 0.5.1)
+    - YYModel (~> 1.0.4)
   - Qiniu (8.2.1):
     - HappyDNS (~> 0.3.17)
   - SDWebImage (5.12.3):
@@ -17,14 +22,11 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking/Reachability
-  - FMDB (~> 2.7.5)
   - Masonry (~> 1.1.0)
   - MJRefresh (~> 3.6.1)
-  - Qiniu (~> 8.2.0)
+  - MoorV7SDK (~> 1.5.0)
   - SDWebImage
-  - SocketRocket (~> 0.5.1)
   - TZImagePickerController
-  - YYModel
 
 SPEC REPOS:
   trunk:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - HappyDNS
     - Masonry
     - MJRefresh
+    - MoorV7SDK
     - Qiniu
     - SDWebImage
     - SocketRocket
@@ -45,12 +48,13 @@ SPEC CHECKSUMS:
   HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  MoorV7SDK: 6f900261bcb80d92fc84d8d1d6b9e0b7743bec25
   Qiniu: c598ee0f02eaea9dff6cd7d94f929fb90b59bd5e
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   TZImagePickerController: d8c57e56fe6990a961d03134121a091c31015aa5
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 6a686a86c967d8618075ef9e79a3aea18cb2e414
+PODFILE CHECKSUM: 3d1cfb207ad7ade11001c5a2b7a79129492de7cc
 
 COCOAPODS: 1.11.2

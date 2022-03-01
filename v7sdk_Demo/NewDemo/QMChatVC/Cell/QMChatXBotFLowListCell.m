@@ -127,14 +127,14 @@
         });
     }
 
-    if (model.type == ChatMessageRev) {
+    if (model.type == ChatMessageRev && model.isShowHtml == false) {
         if (QMThemeManager.shared.leftMsgTextColor.hasBeenSetColor) {
             self.contentLab.textColor = QMThemeManager.shared.leftMsgTextColor.color;
         }
         if (QMThemeManager.shared.leftMsgBgColor.hasBeenSetColor) {
             self.containerView.backgroundColor = QMThemeManager.shared.leftMsgBgColor.color;
         }
-    } else {
+    } else if (model.type == ChatMessageSend) {
         if (QMThemeManager.shared.rightMsgTextColor.hasBeenSetColor) {
             self.contentLab.textColor = QMThemeManager.shared.rightMsgTextColor.color;
         }

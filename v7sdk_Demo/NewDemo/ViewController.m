@@ -135,7 +135,7 @@ static NSString *k_qm_accessId = @"accessId";
             [[QMThemeManager shared] handelNetThemeColor:sessionWindow];
             NSDictionary *globalConfig = data[@"globalConfig"];
 
-            [QMThemeManager shared].isHiddenAddBtn = YES;
+            [QMThemeManager shared].isHiddenAddBtn = NO;
             if ([globalConfig isKindOfClass:[NSDictionary class]]) {
                 QMThemeManager.shared.isVisitorTypeNotice = [globalConfig[@"isVisitorTypeNotice"] boolValue];
                 [QMThemeManager shared].isShowRead = [globalConfig[@"isAgentReadMessage"] boolValue];

@@ -15,7 +15,7 @@
 
 
 - (ChatMessageMode)type {
-    return [self.fromType isEqualToString:@"0"] ? ChatMessageSend : ChatMessageRev;
+    return [self.fromType isEqualToString:@"in"] ? ChatMessageSend : ChatMessageRev;
 }
 
 - (QMMessageType)eMessageType {
@@ -71,8 +71,8 @@
         
         NSMutableAttributedString *attr = message.contentAttr.mutableCopy;
         NSMutableAttributedString *att2 = message.contentAttr2.mutableCopy;
-        [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
-        [att2 addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, att2.length)];
+//        [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
+//        [att2 addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, att2.length)];
         
         msg.contentAttr = attr;
         msg.contentAttr2 = att2;
@@ -81,7 +81,7 @@
             QMAttributedManager *magr = [QMAttributedManager shared];
             
             NSMutableAttributedString *attr = [magr filterText:msg.content skipFilterPhoneNum:msg.type == ChatMessageSend].mutableCopy;
-            [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
+//            [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
             msg.contentAttr = attr;
         }
 

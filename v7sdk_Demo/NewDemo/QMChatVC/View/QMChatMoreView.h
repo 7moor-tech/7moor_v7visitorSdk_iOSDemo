@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
     QMChatMoreModeQuestion,
     QMChatMoreModeEvaluate,
     QMChatMoreModeCard,
+    QMChatMoreModeBlacklist
 } QMChatMoreMode;
 
 @protocol QMMoreViewDelegate <NSObject>
@@ -28,6 +29,9 @@ typedef enum : NSUInteger {
 @interface QMChatMoreView : UIView
 
 @property (nonatomic, weak) id<QMMoreViewDelegate> delegate;
+// 显示黑名单解封文案。为空时 隐藏。
+@property (nonatomic, copy, nullable) NSString *blackListContent;
+
 
 - (void)refreshMoreBtn;
 

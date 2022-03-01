@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import <JSONModel/JSONModel.h>
 #import "YYModel.h"
 #import <moorV7SDK/moorV7SDK.h>
 #import "QMLogistcsInfoModel.h"

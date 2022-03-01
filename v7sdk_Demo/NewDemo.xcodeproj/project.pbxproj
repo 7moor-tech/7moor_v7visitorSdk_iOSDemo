@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0038EEE51CBBB5BDAF08E62D /* Pods_NewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E26CB80173A373657AB4DDC2 /* Pods_NewDemo.framework */; };
 		21044CCC2681BC5000621481 /* QMChatListCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21044CCB2681BC4F00621481 /* QMChatListCardCell.m */; };
 		2111175A26A55F1D000B9F2D /* QMSatisfactionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2111175926A55F1D000B9F2D /* QMSatisfactionView.m */; };
 		2112F0A925E63B1400C4B55A /* QMChatMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2112F0A825E63B1400C4B55A /* QMChatMoreView.m */; };
@@ -52,7 +51,6 @@
 		3D2E8FD725E7AC27004A6818 /* QMChatVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E8FD625E7AC27004A6818 /* QMChatVideoCell.m */; };
 		3D2E8FDA25E7B961004A6818 /* QMChatAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E8FD925E7B961004A6818 /* QMChatAudioCell.m */; };
 		3D3949B4266CCBCF008A5DD0 /* QMChatXBotFLowListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3949B3266CCBCF008A5DD0 /* QMChatXBotFLowListCell.m */; };
-		3D3D6651272166F90069C348 /* MoorV7Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D3D6650272166F90069C348 /* MoorV7Bundle.bundle */; platformFilter = ios; };
 		3D61F4C52600924E00A2010F /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D61F4C42600924E00A2010F /* SettingCell.m */; };
 		3D61F4C82600977000A2010F /* QMUIItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D61F4C72600977000A2010F /* QMUIItem.m */; };
 		3D61F50D2600A34F00A2010F /* SetColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D61F50C2600A34F00A2010F /* SetColorView.m */; };
@@ -63,7 +61,6 @@
 		3D82DE8D26783C9400C645CF /* QMRegexHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D82DE8C26783C9400C645CF /* QMRegexHandle.m */; };
 		3D82DE96267849B400C645CF /* QMLogistsMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D82DE8F267849B400C645CF /* QMLogistsMoreView.m */; };
 		3D82DE97267849B400C645CF /* QMCardInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D82DE92267849B400C645CF /* QMCardInfoModel.m */; };
-		3D82DE9B2678B78900C645CF /* QMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D82DE9A2678B78900C645CF /* QMButton.m */; };
 		3D8AB29725ECF16F00118FD1 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB29625ECF16F00118FD1 /* SettingViewController.m */; };
 		3D8C1728268ABB3100099096 /* QMRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C1724268ABB3000099096 /* QMRegex.m */; };
 		3D8C1729268ABB3100099096 /* QMAttributedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C1726268ABB3000099096 /* QMAttributedManager.m */; };
@@ -121,14 +118,27 @@
 		3DEBB16225E8DB000040EA5B /* QMChatTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBB16125E8DB000040EA5B /* QMChatTextView.m */; };
 		3DEBB16525E8DD5D0040EA5B /* QMChatCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEBB16425E8DD5D0040EA5B /* QMChatCardCell.m */; };
 		3DF75543267305E300909C4F /* QMChatShowImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF75541267305E200909C4F /* QMChatShowImageViewController.m */; };
-		C76A997A27474242008F94C9 /* MoorV7SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76A997927474241008F94C9 /* MoorV7SDK.framework */; };
-		C77DE90827CDC6D600774D2B /* QMSatisfactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C77DE90627CDC6D600774D2B /* QMSatisfactionModel.m */; };
+		B9D55078C5A5560E6C4B7AB0 /* Pods_NewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAF2B6CE6A7534FD51D5C51 /* Pods_NewDemo.framework */; };
+		C77DE90B27CDF19600774D2B /* QMSatisfactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C77DE90927CDF19600774D2B /* QMSatisfactionModel.m */; };
 		C782ED46273B712B00CE8009 /* NSObject+QMUIKit_OC.m in Sources */ = {isa = PBXBuildFile; fileRef = C782ED44273B712A00CE8009 /* NSObject+QMUIKit_OC.m */; };
 		C78DE52F271D6DCB00373BDF /* QMCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C78DE52E271D6DCB00373BDF /* QMCircleView.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3D20766227BCD1AF0089D7B4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1179665BFFFE7F0789AEB7A4 /* Pods-NewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewDemo.release.xcconfig"; path = "Target Support Files/Pods-NewDemo/Pods-NewDemo.release.xcconfig"; sourceTree = "<group>"; };
+		1ADA91169ED929DD0CB23E34 /* Pods-NewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewDemo.release.xcconfig"; path = "Target Support Files/Pods-NewDemo/Pods-NewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		21044CCA2681BC4F00621481 /* QMChatListCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMChatListCardCell.h; sourceTree = "<group>"; };
 		21044CCB2681BC4F00621481 /* QMChatListCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMChatListCardCell.m; sourceTree = "<group>"; };
 		2111175826A55F1D000B9F2D /* QMSatisfactionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMSatisfactionView.h; sourceTree = "<group>"; };
@@ -193,7 +203,6 @@
 		219E6E0625A4810D00D67968 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		219E6E0825A4812E00D67968 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		219E6E0A25A4814A00D67968 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		30CBC731056C7777CB9B3D2D /* Pods-NewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewDemo.debug.xcconfig"; path = "Target Support Files/Pods-NewDemo/Pods-NewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3D011EC62660B9E700BBC4E5 /* QMChatXBobtSelectButtonRowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMChatXBobtSelectButtonRowCell.h; sourceTree = "<group>"; };
 		3D011EC72660B9E700BBC4E5 /* QMChatXBobtSelectButtonRowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMChatXBobtSelectButtonRowCell.m; sourceTree = "<group>"; };
 		3D14C0952668C70000F1ACE5 /* QMChatEmoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMChatEmoji.h; sourceTree = "<group>"; };
@@ -216,8 +225,6 @@
 		3D2E8FD925E7B961004A6818 /* QMChatAudioCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMChatAudioCell.m; sourceTree = "<group>"; };
 		3D3949B2266CCBCF008A5DD0 /* QMChatXBotFLowListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMChatXBotFLowListCell.h; sourceTree = "<group>"; };
 		3D3949B3266CCBCF008A5DD0 /* QMChatXBotFLowListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMChatXBotFLowListCell.m; sourceTree = "<group>"; };
-		3D3D6650272166F90069C348 /* MoorV7Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MoorV7Bundle.bundle; sourceTree = "<group>"; };
-		3D410D4425F2348B00B73CE1 /* NewDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NewDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D61F4C32600924E00A2010F /* SettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		3D61F4C42600924E00A2010F /* SettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		3D61F4C62600977000A2010F /* QMUIItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMUIItem.h; sourceTree = "<group>"; };
@@ -238,8 +245,6 @@
 		3D82DE92267849B400C645CF /* QMCardInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMCardInfoModel.m; sourceTree = "<group>"; };
 		3D82DE93267849B400C645CF /* QMCardInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMCardInfoModel.h; sourceTree = "<group>"; };
 		3D82DE95267849B400C645CF /* QMLogistsMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMLogistsMoreView.h; sourceTree = "<group>"; };
-		3D82DE992678B78900C645CF /* QMButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMButton.h; sourceTree = "<group>"; };
-		3D82DE9A2678B78900C645CF /* QMButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMButton.m; sourceTree = "<group>"; };
 		3D8AB29525ECF16F00118FD1 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		3D8AB29625ECF16F00118FD1 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		3D8C1724268ABB3000099096 /* QMRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMRegex.m; sourceTree = "<group>"; };
@@ -354,14 +359,14 @@
 		3DEBB16425E8DD5D0040EA5B /* QMChatCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMChatCardCell.m; sourceTree = "<group>"; };
 		3DF75541267305E200909C4F /* QMChatShowImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMChatShowImageViewController.m; sourceTree = "<group>"; };
 		3DF75542267305E300909C4F /* QMChatShowImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMChatShowImageViewController.h; sourceTree = "<group>"; };
-		C76A997927474241008F94C9 /* MoorV7SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MoorV7SDK.framework; sourceTree = "<group>"; };
-		C77DE90627CDC6D600774D2B /* QMSatisfactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSatisfactionModel.m; sourceTree = "<group>"; };
-		C77DE90727CDC6D600774D2B /* QMSatisfactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSatisfactionModel.h; sourceTree = "<group>"; };
+		3EAF2B6CE6A7534FD51D5C51 /* Pods_NewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A66C235EE2DEF30641B7F6E /* Pods-NewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewDemo.debug.xcconfig"; path = "Target Support Files/Pods-NewDemo/Pods-NewDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C77DE90927CDF19600774D2B /* QMSatisfactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMSatisfactionModel.m; sourceTree = "<group>"; };
+		C77DE90A27CDF19600774D2B /* QMSatisfactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMSatisfactionModel.h; sourceTree = "<group>"; };
 		C782ED44273B712A00CE8009 /* NSObject+QMUIKit_OC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QMUIKit_OC.m"; sourceTree = "<group>"; };
 		C782ED45273B712B00CE8009 /* NSObject+QMUIKit_OC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QMUIKit_OC.h"; sourceTree = "<group>"; };
 		C78DE52D271D6DCB00373BDF /* QMCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QMCircleView.h; sourceTree = "<group>"; };
 		C78DE52E271D6DCB00373BDF /* QMCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QMCircleView.m; sourceTree = "<group>"; };
-		E26CB80173A373657AB4DDC2 /* Pods_NewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,9 +377,8 @@
 				219E6E0925A4813800D67968 /* libsqlite3.tbd in Frameworks */,
 				219E6E0725A4811500D67968 /* libz.tbd in Frameworks */,
 				2112F2E725E8EEBF00C4B55A /* libmp3lame.a in Frameworks */,
-				C76A997A27474242008F94C9 /* MoorV7SDK.framework in Frameworks */,
 				219E6E0B25A4815600D67968 /* libresolv.tbd in Frameworks */,
-				0038EEE51CBBB5BDAF08E62D /* Pods_NewDemo.framework in Frameworks */,
+				B9D55078C5A5560E6C4B7AB0 /* Pods_NewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,9 +424,9 @@
 		212BA90425C9487E00942060 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C77DE90A27CDF19600774D2B /* QMSatisfactionModel.h */,
+				C77DE90927CDF19600774D2B /* QMSatisfactionModel.m */,
 				212BA90B25C9491000942060 /* QMThemeManager.h */,
-				C77DE90727CDC6D600774D2B /* QMSatisfactionModel.h */,
-				C77DE90627CDC6D600774D2B /* QMSatisfactionModel.m */,
 				212BA90C25C9491000942060 /* QMThemeManager.m */,
 				3DB9F52725E5F2DA000619B1 /* QMChatMessage.h */,
 				3DB9F52825E5F2DA000619B1 /* QMChatMessage.m */,
@@ -576,13 +580,11 @@
 		218A322F25A460E1000EFA68 /* NewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3D410D4425F2348B00B73CE1 /* NewDemo-Bridging-Header.h */,
 				218A323025A460E1000EFA68 /* AppDelegate.h */,
 				218A323125A460E1000EFA68 /* AppDelegate.m */,
 				218A328025A46752000EFA68 /* PrefixHeader.pch */,
 				218A323625A460E1000EFA68 /* ViewController.h */,
 				218A323725A460E1000EFA68 /* ViewController.m */,
-				3D3D6650272166F90069C348 /* MoorV7Bundle.bundle */,
 				212BA90025C9477C00942060 /* QMChatVC */,
 				3D61F4C22600922800A2010F /* Setting */,
 				212BA91D25C9602300942060 /* Tools */,
@@ -600,11 +602,10 @@
 		218A327425A46564000EFA68 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C76A997927474241008F94C9 /* MoorV7SDK.framework */,
 				219E6E0A25A4814A00D67968 /* libresolv.tbd */,
 				219E6E0825A4812E00D67968 /* libsqlite3.tbd */,
 				219E6E0625A4810D00D67968 /* libz.tbd */,
-				E26CB80173A373657AB4DDC2 /* Pods_NewDemo.framework */,
+				3EAF2B6CE6A7534FD51D5C51 /* Pods_NewDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -827,8 +828,6 @@
 				3DDADF67266F54EF000A9968 /* QMFormSingleChoiceView.m */,
 				3DDADF6E266F54F0000A9968 /* QMFormSingleLineCell.h */,
 				3DDADF70266F54F1000A9968 /* QMFormSingleLineCell.m */,
-				3D82DE992678B78900C645CF /* QMButton.h */,
-				3D82DE9A2678B78900C645CF /* QMButton.m */,
 			);
 			path = FormView;
 			sourceTree = "<group>";
@@ -836,8 +835,8 @@
 		59205A0029F5E3FF737AAAF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				30CBC731056C7777CB9B3D2D /* Pods-NewDemo.debug.xcconfig */,
-				1179665BFFFE7F0789AEB7A4 /* Pods-NewDemo.release.xcconfig */,
+				8A66C235EE2DEF30641B7F6E /* Pods-NewDemo.debug.xcconfig */,
+				1ADA91169ED929DD0CB23E34 /* Pods-NewDemo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -854,6 +853,8 @@
 				218A322A25A460E1000EFA68 /* Frameworks */,
 				218A322B25A460E1000EFA68 /* Resources */,
 				8A42AE8044DA7ACE4A415E6F /* [CP] Embed Pods Frameworks */,
+				3D20766227BCD1AF0089D7B4 /* Embed Frameworks */,
+				240745420CAFB2FDFDAAFDF5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -902,7 +903,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3D6651272166F90069C348 /* MoorV7Bundle.bundle in Resources */,
 				218A324025A460E3000EFA68 /* LaunchScreen.storyboard in Resources */,
 				212BA94B25CA4F8600942060 /* Localizable.strings in Resources */,
 				218A323D25A460E3000EFA68 /* Assets.xcassets in Resources */,
@@ -913,6 +913,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		240745420CAFB2FDFDAAFDF5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewDemo/Pods-NewDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NewDemo/Pods-NewDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NewDemo/Pods-NewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8A42AE8044DA7ACE4A415E6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1030,7 +1047,6 @@
 				3DDADF78266F54F1000A9968 /* QMFormSingleChoiceCell.m in Sources */,
 				3DDADF7C266F54F1000A9968 /* QMFormCityCell.m in Sources */,
 				212BA95425CA868000942060 /* QMChatInputView.m in Sources */,
-				C77DE90827CDC6D600774D2B /* QMSatisfactionModel.m in Sources */,
 				3DD0C9952601DF0400CBE3C1 /* SetColorFooter.m in Sources */,
 				3D8C1728268ABB3100099096 /* QMRegex.m in Sources */,
 				3DAE2EEB2669D22400859974 /* QMVideoTableCell.m in Sources */,
@@ -1055,11 +1071,11 @@
 				3D160743265D02C7008CE1F7 /* QMChatXBotQuestionGroupCell.m in Sources */,
 				2112F31525EE1D2200C4B55A /* UIImage+Clip.m in Sources */,
 				3D289CAB268C1C0300E639E0 /* QMChatInputView+Delegate.m in Sources */,
-				3D82DE9B2678B78900C645CF /* QMButton.m in Sources */,
 				212BA90A25C9487E00942060 /* QMChatRoomViewController.m in Sources */,
 				3DEBB16525E8DD5D0040EA5B /* QMChatCardCell.m in Sources */,
 				3D8C1729268ABB3100099096 /* QMAttributedManager.m in Sources */,
 				3D2372362667596F00DF9ECB /* QMChatRoomViewController+QMChatQuickFAQ.m in Sources */,
+				C77DE90B27CDF19600774D2B /* QMSatisfactionModel.m in Sources */,
 				3D82DE8D26783C9400C645CF /* QMRegexHandle.m in Sources */,
 				3D14C0972668C70000F1ACE5 /* QMChatEmoji.m in Sources */,
 				3DD0C9BF2601E90F00CBE3C1 /* UIImage+Color.m in Sources */,
@@ -1222,7 +1238,7 @@
 		};
 		218A324725A460E3000EFA68 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30CBC731056C7777CB9B3D2D /* Pods-NewDemo.debug.xcconfig */;
+			baseConfigurationReference = 8A66C235EE2DEF30641B7F6E /* Pods-NewDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1237,6 +1253,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/NewDemo",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = NewDemo/PrefixHeader.pch;
@@ -1304,12 +1321,13 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
 		218A324825A460E3000EFA68 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1179665BFFFE7F0789AEB7A4 /* Pods-NewDemo.release.xcconfig */;
+			baseConfigurationReference = 1ADA91169ED929DD0CB23E34 /* Pods-NewDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1324,6 +1342,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/NewDemo",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = NewDemo/PrefixHeader.pch;
@@ -1390,6 +1409,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "NewDemo/NewDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};

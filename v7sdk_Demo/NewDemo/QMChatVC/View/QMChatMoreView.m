@@ -59,10 +59,35 @@
             model.image_name = @"QM_ToolBar_OrderCard";
             model.name = @"发送订单".toLocalized;
             break;
+        case QMChatMoreModeBlacklist:
+            model.name = self.blackListContent;
+            model.image_name = @"QM_ToolBar_blacklist";
+
         default:
             break;
     }
     return model;
+}
+
+- (void)setBlackListContent:(NSString *)blackListContent {
+    _blackListContent = blackListContent;
+    [self setShowBlackListItem:blackListContent];
+}
+
+- (void)setShowBlackListItem:(NSString *)name {
+    if (name.length > 0) {
+        QMChatMoreModel *model = [self getChatMoreItem:QMChatMoreModeBlacklist];
+        [self.dataArray addObject:model];
+    } else {
+        for (QMChatMoreModel *model in self.dataArray) {
+            if (model.mode == QMChatMoreModeBlacklist) {
+                [self.dataArray removeObject:model];
+                break;
+            }
+        }
+    }
+    
+    [self.rootView reloadData];
 }
 
 - (void)layoutViews {
@@ -93,6 +118,11 @@
     
     if (uiModel.isHiddenEvaluateBtn == NO) {
         QMChatMoreModel *pictModel = [self getChatMoreItem:QMChatMoreModeEvaluate];
+        [self.dataArray addObject:pictModel];
+    }
+    
+    if (self.blackListContent.length > 0) {
+        QMChatMoreModel *pictModel = [self getChatMoreItem:QMChatMoreModeBlacklist];
         [self.dataArray addObject:pictModel];
     }
     

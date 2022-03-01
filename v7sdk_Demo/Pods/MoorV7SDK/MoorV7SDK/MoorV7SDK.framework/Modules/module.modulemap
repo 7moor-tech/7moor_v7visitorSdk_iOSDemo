@@ -1,0 +1,6 @@
+framework module MoorV7SDK {
+  umbrella header "MoorV7SDK.h"
+
+  export *
+  module * { export * }
+}

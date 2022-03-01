@@ -95,6 +95,10 @@
         case QMChatMoreModeCard:
             [self sendCard];
             break;
+        case QMChatMoreModeBlacklist:
+            [self sendTextMessage:self.chatInputView.addView.blackListContent];
+            self.chatInputView.addView.blackListContent = nil;
+            break;
         default:
             break;
     }

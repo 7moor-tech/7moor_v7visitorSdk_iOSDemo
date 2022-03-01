@@ -93,11 +93,16 @@
     NSString *status = [statusInformation objectForKey:@"status"];
     NSString *oldMessageId = [statusInformation objectForKey:@"oldMessageId"];
     NSString *newId = [statusInformation objectForKey:@"newMessageId"];
-
+    NSString *isRead = [statusInformation objectForKey:@"isRead"];
+    __block NSIndexPath *indexPath;
     [self.dataSource enumerateObjectsUsingBlock:^(QMChatMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ([obj._id isEqualToString:oldMessageId] || [obj._id isEqualToString:newId]) {
             obj.status = status;
+            if (isRead) {
+                obj.isRead = isRead;
+                indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+            }
             if (oldMessageId.length > 0) {
                 [NSNotificationCenter.defaultCenter postNotificationName:oldMessageId object:status];
             }
@@ -105,6 +110,17 @@
             *stop = YES;
         }
     }];
+    
+    if (indexPath.row != NSNotFound && indexPath.row <= self.dataSource.count) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *indexPaths = [self.chatTableView indexPathsForVisibleRows];
+                if ([indexPaths containsObject:indexPath]) {
+                    QMChatBaseCell *cell = (QMChatBaseCell *)[self.chatTableView cellForRowAtIndexPath:indexPath];
+                    [cell setMessageIsRead:@"1"];
+                }
+            });
+        
+    }
 }
 
 // 发送文件
@@ -180,7 +196,7 @@
             self.isRobot = YES;
             self.manualButotn.hidden = NO;
             self.manualButotn.tag = 1001;
-            [self updateAddBtnStatus:YES];
+//            [self updateAddBtnStatus:YES];
             self.serviceMode = QMChatServiceModeRobot;
 
         }
@@ -262,8 +278,13 @@
             self.manualButotn.tag = 1000;
             [self closeQueueNum];
             self.serviceMode = QMChatServiceModeNone;
-
+            [self.chatInputView.addView setBlackListContent:@""];
             break;
+            
+        case QMKStatusBlackList:
+            [self.chatInputView.addView setBlackListContent:information.content];
+            break;
+            
         default:
             break;
     }
