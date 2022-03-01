@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  newDemo
+
+  Created by lishuijiao on 2021/2/3.
+  
+*/
+
+
+"注销" = "exit";
+
+"转人工" = "turn artficial";
+
+
+
+"图库" = "Picture";
+"拍照" = "Camera";
+"文件" = "File";
+
+"常见问题" = "Commonproblems";
+
+"评价" = "Evaluation";
+
+"按住  说话" = "hold to talk";
+
+"松开 发送" = "Loosen and send";
+
+"松开手指 取消发送" = "release to cancel";
+
+"手指上滑 取消发送" = "release to cancel";

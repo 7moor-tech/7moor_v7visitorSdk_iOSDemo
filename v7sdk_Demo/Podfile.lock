@@ -1,0 +1,56 @@
+PODS:
+  - AFNetworking/Reachability (4.0.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - HappyDNS (0.3.17)
+  - Masonry (1.1.0)
+  - MJRefresh (3.6.1)
+  - Qiniu (8.2.1):
+    - HappyDNS (~> 0.3.17)
+  - SDWebImage (5.12.3):
+    - SDWebImage/Core (= 5.12.3)
+  - SDWebImage/Core (5.12.3)
+  - SocketRocket (0.5.1)
+  - TZImagePickerController (3.7.3)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking/Reachability
+  - FMDB (~> 2.7.5)
+  - Masonry (~> 1.1.0)
+  - MJRefresh (~> 3.6.1)
+  - Qiniu (~> 8.2.0)
+  - SDWebImage
+  - SocketRocket (~> 0.5.1)
+  - TZImagePickerController
+  - YYModel
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - FMDB
+    - HappyDNS
+    - Masonry
+    - MJRefresh
+    - Qiniu
+    - SDWebImage
+    - SocketRocket
+    - TZImagePickerController
+    - YYModel
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  HappyDNS: 848ef73e24f2b0e2752064223ce2dc0dd88900ea
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  Qiniu: c598ee0f02eaea9dff6cd7d94f929fb90b59bd5e
+  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  TZImagePickerController: d8c57e56fe6990a961d03134121a091c31015aa5
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 6a686a86c967d8618075ef9e79a3aea18cb2e414
+
+COCOAPODS: 1.11.2

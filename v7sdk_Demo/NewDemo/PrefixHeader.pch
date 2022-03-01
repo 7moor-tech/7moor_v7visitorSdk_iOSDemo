@@ -1,0 +1,94 @@
+//
+//  PrefixHeader.pch
+//  newDemo
+//
+//  Created by lishuijiao on 2021/1/5.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#define QM_kStatusBarHeight  [UIApplication sharedApplication].statusBarFrame.size.height
+#define kStatusBarAndNavHeight (QM_kStatusBarHeight + 44.0)
+#define QM_IS_iPHONEX  ((QM_kStatusBarHeight > 20)?YES:NO)
+
+#define QM_kScreenWidth  [[UIScreen mainScreen] bounds].size.width
+#define QM_kScreenHeight (QM_IS_iPHONEX ? ([[UIScreen mainScreen] bounds].size.height - 34) : ([[UIScreen mainScreen] bounds].size.height))
+
+#define kInputViewHeight 65
+
+
+
+
+
+
+
+#define isQMDarkStyle (QMThemeManager.shared.qmDarkStyle)
+
+
+#import <MoorV7SDK/MoorV7SDK.h>
+
+//model
+#import "QMThemeManager.h"
+
+#import "QMChatManager.h"
+
+//tools
+#import "UIColor+Hex.h"
+#import "QMAudioPlayer.h"
+#import "QMAudioRecorder.h"
+#import "SJVoiceTransform.h"
+#import "UIImage+Clip.h"
+#import "NSAttributedString+QMEmojiExtension.h"
+#import "QMLoadingHUD.h"
+
+//venders
+#import <Masonry/Masonry.h>
+#import "TZImagePickerController.h"
+#import "NSString+Localized.h"
+#import "QMRemind.h"
+#import "MJRefresh.h"
+#import <SDWebImage/SDWebImage.h>
+#import "AFNetworkReachabilityManager.h"
+#import "NSObject+QMUIKit_OC.h"
+
+static NSString *QM_PingFangSC_Med = @"PingFangSC-Medium";
+static NSString *QM_PingFangSC_Reg = @"PingFangSC-Regular";
+static NSString *QM_PingFangSC_Lig = @"PingFangSC-Light";
+static NSString *QM_PingFangTC_Sem = @"PingFangTC-Semibold";
+
+static NSString *QMColor_News_Custom = @"#0081FF";
+static NSString *QMColor_151515_text = @"#151515";
+static NSString *QMColor_333333_text = @"#333333";
+static NSString *QMColor_666666_text = @"#666666";
+static NSString *QMColor_999999_text = @"#999999";
+static NSString *QMColor_FFFFFF_text = @"#FFFFFF";
+
+#define QMHEXRGB(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:1.0]
+
+#define k_Chat_Font [UIFont fontWithName:QM_PingFangSC_Reg size:16]
+
+
+#define k_qm_RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define k_QMRGB(r,g,b) k_qm_RGBA(r,g,b,1.0)
+
+#define isIPad (QM_kScreenWidth > 450 ? YES : NO)
+#define kScale6 (isIPad ? 1 : QM_kScreenWidth/375.0)
+
+#define QMChatTextMaxWidth (QM_kScreenWidth - 67 * 2 - 30)
+
+#define QMWeakSelf \
+__weak typeof(self) self_weak_ = self;
+
+#define QMStrongSelf \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wshadow\"") \
+__strong typeof(self) self = self_weak_;\
+_Pragma("clang diagnostic pop")
+
+
+#endif /* PrefixHeader_pch */

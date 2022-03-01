@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+
+
+
+platform :ios, '9.0'
+
+
+target 'NewDemo' do
+
+  project 'NewDemo'
+  
+  use_frameworks!
+  
+  pod 'SDWebImage'
+  pod 'Masonry', '~> 1.1.0'
+  pod 'TZImagePickerController'
+  pod 'AFNetworking/Reachability'
+  pod 'MJRefresh', '~> 3.6.1'
+  pod 'FMDB', '~> 2.7.5'
+  pod 'SocketRocket', '~> 0.5.1'
+  pod 'Qiniu', '~> 8.2.0'
+  pod 'YYModel'
+  
+end
+
