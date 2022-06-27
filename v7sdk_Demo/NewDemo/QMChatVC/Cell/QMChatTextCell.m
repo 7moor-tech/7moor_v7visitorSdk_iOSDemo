@@ -55,13 +55,17 @@
         }
     }
     
+    self.contentLab.textColor = textColor;
+    
     if (model.contentAttr && model.contentAttr.length > 0) {
         self.contentLab.attributedText = model.contentAttr;
-    } else {
+    }
+    else {
         QMAttributedManager *magr = [QMAttributedManager shared];
         NSMutableAttributedString *attr = [magr filterString:model.content font:self.contentLab.font skipFilterPhoneNum:model.type == ChatMessageSend].mutableCopy;
+        
         [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
-    
+        
         if (model.messageId == self.message.messageId) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.contentLab.attributedText = attr;
@@ -73,8 +77,6 @@
         }
         
     }
-
-    self.contentLab.textColor = textColor;
     
 }
 

@@ -13,10 +13,12 @@
  */
 @interface QNResponseInfo : NSObject
 
-/// 状态码
+/// 状态码，具体见 QNErrorCode.h
 @property (readonly) int statusCode;
 /// response 信息
 @property (nonatomic, copy, readonly) NSDictionary *responseDictionary;
+/// response 头信息
+@property (nonatomic, copy, readonly) NSDictionary *responseHeader;
 /// response message
 @property (nonatomic, copy, readonly) NSString *message;
 /// 七牛服务器生成的请求ID，用来跟踪请求信息，如果使用过程中出现问题，请反馈此ID

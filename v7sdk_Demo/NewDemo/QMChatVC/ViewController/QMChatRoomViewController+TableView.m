@@ -32,6 +32,8 @@
 #import "QMMoreQuestionView.h"
 #import "QMLogistsMoreView.h"
 
+#import "QMChatRoomViewController+NewMsgTip.h"
+
 
 @implementation QMChatRoomViewController (TableView)
 
@@ -69,7 +71,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     QMChatMessage *model = self.dataSource[indexPath.row];
-        
+    model.newMsg = NO;
+    if (self.scrollTo_indexPath == indexPath || self.dataSource.count <= self.scrollTo_indexPath.row) {
+        [self hiddenMessageScrollButtopn];
+    }
     NSString *cell_id = [self getCellidWithModel:model];
 
     if (indexPath.row == 0) {

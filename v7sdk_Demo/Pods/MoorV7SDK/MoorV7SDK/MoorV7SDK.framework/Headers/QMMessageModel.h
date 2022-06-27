@@ -215,6 +215,11 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, copy) NSArray *listCards;
 
+/**
+ 滑动查看历史消息后，未加载的新信息标识 0 已读（数据库未存，为零历史消息也是已读） / 1 未读
+ */
+@property (nonatomic, assign) BOOL newMsg;
+
 
 + (instancetype)jsonDataToQMMessageModel:(NSDictionary *)dictionary;
 

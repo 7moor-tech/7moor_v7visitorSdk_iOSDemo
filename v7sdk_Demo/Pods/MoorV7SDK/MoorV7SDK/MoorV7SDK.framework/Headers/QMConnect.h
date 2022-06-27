@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)sdkNewChat:(void (^)(NSDictionary *data))completion failure:(void (^)(NSDictionary *error))failure;
 + (void)sdkNewSession:(void (^)(NSDictionary *))completion failure:(void (^)(NSDictionary *))failure;
+// userAlias 别名
++ (void)sdkNewSession:(nullable NSString *)userAlias completion:(void (^)(NSDictionary *))completion failure:(void (^)(NSDictionary *))failure;
+
 + (void)sdkSatisfaction:(void (^)(NSDictionary *data))completion failure:(void (^)(NSDictionary *reason))failure;
 
 + (void)sdkCheckCSRStatus:(NSString *)messageId sessionId:(NSString *)sessionId completion:(void (^)(NSDictionary *data))completion failure:(void (^)(NSDictionary *reason))failure;
@@ -153,7 +156,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)sdkReConnect;
 + (NSString *)sdkGetQiniuURL;
 + (NSString *)sdkGetCommonURL;
-
++ (NSString *)sdkGetHttpURL;
++ (void)sdkSetHttoURL:(NSString *)url;
 /**
  查询坐席的未消费的消息
  */

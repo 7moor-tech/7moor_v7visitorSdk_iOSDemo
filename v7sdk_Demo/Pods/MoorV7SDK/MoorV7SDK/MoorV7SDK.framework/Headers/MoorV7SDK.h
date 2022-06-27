@@ -49,3 +49,8 @@ FOUNDATION_EXPORT const unsigned char moorV7SDKVersionString[];
  *  撤回消息通知
  */
 #define CUSTOM_MESSAGEWITHDRAW_STATUS @"customMessageWithdrawMessage"
+
+/**
+ 预知输入通知
+ */
+#define CUSTOM_PredictTheInputNotification @"predictTheInputNotification"

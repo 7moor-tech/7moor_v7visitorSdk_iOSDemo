@@ -492,6 +492,7 @@
         _submitButton.titleLabel.font = [UIFont fontWithName:QM_PingFangSC_Reg size:15];
         _submitButton.backgroundColor = [[QMThemeManager shared].mainColorModel color:0.1];
         [_submitButton setTitle:@"提交评价" forState:UIControlStateNormal];
+        _submitButton.QM_eventTimeInterval = 1;
         [_submitButton setTitleColor:[QMThemeManager shared].mainColorModel.color forState:UIControlStateNormal];
     }
     return _submitButton;
@@ -541,6 +542,7 @@
     NSString *str = textView.text;
     if (str.length > 50) {
         str = [str substringToIndex:50];
+        textView.text = str;
     }
     UILabel *countLab = (UILabel *)[self.coverView viewWithTag:212];
     if (countLab) {

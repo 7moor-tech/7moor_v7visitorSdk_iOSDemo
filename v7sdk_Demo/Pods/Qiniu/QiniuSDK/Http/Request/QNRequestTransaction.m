@@ -20,6 +20,7 @@
 #import "QNUserAgent.h"
 #import "QNResponseInfo.h"
 #import "QNUploadRequestState.h"
+#import "QNUploadRequestMetrics.h"
 
 #import "QNUploadDomainRegion.h"
 #import "QNHttpRegionRequest.h"
@@ -133,28 +134,40 @@
         param[@"crc32"] = [NSString stringWithFormat:@"%u", (unsigned int)[QNCrc32 data:data]];
     }
     
-    NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"werghnvt54wef654rjuhgb56trtg34tweuyrgf";
     NSString *disposition = @"Content-Disposition: form-data";
-    for (NSString *paramsKey in param) {
-        NSString *pair = [NSString stringWithFormat:@"--%@\r\n%@; name=\"%@\"\r\n\r\n", boundary, disposition, paramsKey];
-        [body appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSMutableData *body = [NSMutableData data];
+    @try {
+        for (NSString *paramsKey in param) {
+            NSString *pair = [NSString stringWithFormat:@"--%@\r\n%@; name=\"%@\"\r\n\r\n", boundary, disposition, paramsKey];
+            [body appendData:[pair dataUsingEncoding:NSUTF8StringEncoding]];
 
-        id value = [param objectForKey:paramsKey];
-        if ([value isKindOfClass:[NSString class]]) {
-            [body appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
-        } else if ([value isKindOfClass:[NSData class]]) {
-            [body appendData:value];
+            id value = [param objectForKey:paramsKey];
+            if ([value isKindOfClass:[NSString class]]) {
+                [body appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
+            } else if ([value isKindOfClass:[NSData class]]) {
+                [body appendData:value];
+            }
+            [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
-        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+        fileName = [QNUtils formEscape:fileName];
+    
+        NSString *filePair = [NSString stringWithFormat:@"--%@\r\n%@; name=\"%@\"; filename=\"%@\"\nContent-Type:%@\r\n\r\n", boundary, disposition, @"file", fileName, self.uploadOption.mimeType];
+        [body appendData:[filePair dataUsingEncoding:NSUTF8StringEncoding]];
+    
+        [body appendData:data];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    } @catch (NSException *exception) {
+        if (complete) {
+            QNResponseInfo *info = [QNResponseInfo responseInfoWithLocalIOError:[NSString stringWithFormat:@"%@", exception]];
+            QNUploadRegionRequestMetrics *metrics = [QNUploadRegionRequestMetrics emptyMetrics];
+            complete(info, metrics, nil);
+        }
+        return;
     }
     
-    fileName = [QNUtils formEscape:fileName];
-    
-    NSString *filePair = [NSString stringWithFormat:@"--%@\r\n%@; name=\"%@\"; filename=\"%@\"\nContent-Type:%@\r\n\r\n", boundary, disposition, @"file", fileName, self.uploadOption.mimeType];
-    [body appendData:[filePair dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:data];
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSMutableDictionary *header = [NSMutableDictionary dictionary];
     header[@"Content-Type"] = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
@@ -431,6 +444,84 @@
     [self.regionRequest post:action
                      headers:header
                         body:body
+                 shouldRetry:shouldRetry
+                    progress:nil
+                    complete:^(QNResponseInfo * _Nullable responseInfo, QNUploadRegionRequestMetrics * _Nullable metrics, NSDictionary * _Nullable response) {
+
+        complete(responseInfo, metrics, response);
+    }];
+}
+
+- (void)reportLog:(NSData *)logData
+      logClientId:(NSString *)logClientId
+         complete:(QNRequestTransactionCompleteHandler)complete {
+    
+    self.requestInfo.requestType = QNUploadRequestTypeUpLog;
+    NSString *token = [NSString stringWithFormat:@"UpToken %@", self.token.token];
+    NSMutableDictionary *header = [NSMutableDictionary dictionary];
+    header[@"Authorization"] = token;
+    header[@"Content-Type"] = @"application/json";
+    header[@"User-Agent"] = [kQNUserAgent getUserAgent:self.token.token];
+    
+    NSString *action = @"/log/4?compressed=gzip";
+    
+    if (logClientId) {
+        header[@"X-Log-Client-Id"] = logClientId;
+    }
+    
+    BOOL (^shouldRetry)(QNResponseInfo *, NSDictionary *) = ^(QNResponseInfo * responseInfo, NSDictionary * response){
+        return (BOOL)(!responseInfo.isOK);
+    };
+    
+    [self.regionRequest post:action
+                     headers:header
+                        body:logData
+                 shouldRetry:shouldRetry
+                    progress:nil
+                    complete:^(QNResponseInfo * _Nullable responseInfo, QNUploadRegionRequestMetrics * _Nullable metrics, NSDictionary * _Nullable response) {
+
+        complete(responseInfo, metrics, response);
+    }];
+}
+
+- (void)serverConfig:(QNRequestTransactionCompleteHandler)complete {
+    
+    self.requestInfo.requestType = QNUploadRequestTypeServerConfig;
+    NSMutableDictionary *header = [NSMutableDictionary dictionary];
+    header[@"User-Agent"] = [kQNUserAgent getUserAgent:self.token.token];
+    
+    NSString *action = [NSString stringWithFormat:@"/v1/sdk/config?sdk_name=%@&sdk_version=%@", [QNUtils sdkLanguage], [QNUtils sdkVersion]];
+    
+    BOOL (^shouldRetry)(QNResponseInfo *, NSDictionary *) = ^(QNResponseInfo * responseInfo, NSDictionary * response){
+        return (BOOL)(!responseInfo.isOK);
+    };
+    
+    [self.regionRequest post:action
+                     headers:header
+                        body:nil
+                 shouldRetry:shouldRetry
+                    progress:nil
+                    complete:^(QNResponseInfo * _Nullable responseInfo, QNUploadRegionRequestMetrics * _Nullable metrics, NSDictionary * _Nullable response) {
+
+        complete(responseInfo, metrics, response);
+    }];
+}
+
+- (void)serverUserConfig:(QNRequestTransactionCompleteHandler)complete {
+    
+    self.requestInfo.requestType = QNUploadRequestTypeServerUserConfig;
+    NSMutableDictionary *header = [NSMutableDictionary dictionary];
+    header[@"User-Agent"] = [kQNUserAgent getUserAgent:self.token.token];
+    
+    NSString *action = [NSString stringWithFormat:@"/v1/sdk/config/user?ak=%@&sdk_name=%@&sdk_version=%@", self.token.access, [QNUtils sdkLanguage], [QNUtils sdkVersion]];
+    
+    BOOL (^shouldRetry)(QNResponseInfo *, NSDictionary *) = ^(QNResponseInfo * responseInfo, NSDictionary * response){
+        return (BOOL)(!responseInfo.isOK);
+    };
+    
+    [self.regionRequest post:action
+                     headers:header
+                        body:nil
                  shouldRetry:shouldRetry
                     progress:nil
                     complete:^(QNResponseInfo * _Nullable responseInfo, QNUploadRegionRequestMetrics * _Nullable metrics, NSDictionary * _Nullable response) {

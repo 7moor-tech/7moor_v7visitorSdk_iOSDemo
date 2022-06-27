@@ -1,22 +1,37 @@
 # Happy DNS for Objective-C
 
 [![@qiniu on weibo](http://img.shields.io/badge/weibo-%40qiniutek-blue.svg)](http://weibo.com/qiniutek)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+[![LICENSE](https://img.shields.io/github/license/qiniu/happy-dns-objc.svg)](https://github.com/qiniu/happy-dns-objc/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/qiniu/happy-dns-objc.svg?branch=master)](https://travis-ci.org/qiniu/happy-dns-objc)
+[![GitHub release](https://img.shields.io/github/v/tag/qiniu/happy-dns-objc.svg?label=release)](https://github.com/qiniu/happy-dns-objc/releases)
 [![codecov](https://codecov.io/gh/qiniu/happy-dns-objc/branch/master/graph/badge.svg)](https://codecov.io/gh/qiniu/happy-dns-objc)
-[![Latest Stable Version](http://img.shields.io/cocoapods/v/HappyDNS.svg)](https://github.com/qiniu/happy-dns-objc/releases)
 ![Platform](http://img.shields.io/cocoapods/p/HappyDNS.svg)
 
 ## 用途
 
-调用系统底层Dns解析库，可以使用114 等第三方dns解析，也可以集成dnspod等httpdns。另外也有丰富的hosts 域名配置。
+调用系统底层Dns解析库，可以使用114 等第三方dns解析，可以使用 Doh 协议的 Dns 解析方案，也可以集成dnspod等httpdns。另外也有丰富的hosts 域名配置。
 
 ## 安装
 
 通过CocoaPods
-
 ```ruby
 pod "HappyDNS"
+```
+
+通过 Swift Package Manager (Xcode 11+)
+```
+App 对接:
+File -> Swift Packages -> Add Package Dependency，输入 HappyDNS 库链接，选择相应版本即可
+库链接: https://github.com/qiniu/happy-dns-objc
+
+库对接:
+let package = Package(
+    dependencies: [
+        .package(url: "https://github.com/qiniu/happy-dns-objc", from: "1.0.2")
+    ],
+    // ...
+)
+
 ```
 
 ## 运行环境
@@ -28,8 +43,9 @@ pod "HappyDNS"
  NSMutableArray *array = [[NSMutableArray alloc] init];
 [array addObject:[QNResolver systemResolver]];
 [array addObject:[[QNResolver alloc] initWithAddress:@"119.29.29.29"]];
+[array addObject:[QNDohResolver resolverWithServer:@"https://dns.alidns.com/dns-query"]];
 QNDnsManager *dns = [[QNDnsManager alloc] init:array networkInfo:[QNNetworkInfo normal]];
-NSArray *ips = [dns query:@"www.qiniu.com"];
+NSArray <QNRecord *> *records = [dns queryRecords:@"www.qiniu.com"];
 ```
 ＊ url 请求，返回一个IP 替换URL 里的domain
 ```

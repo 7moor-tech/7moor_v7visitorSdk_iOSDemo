@@ -1,0 +1,6 @@
+framework module QMBaseLib {
+  umbrella header "QMBaseLib.h"
+
+  export *
+  module * { export * }
+}

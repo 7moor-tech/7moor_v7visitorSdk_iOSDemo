@@ -50,6 +50,8 @@ typedef enum : NSUInteger {
 
 + (QMChatMessage *)initFromMessage:(QMMessageModel *)message;
 
++ (NSMutableArray *)findAimstrAllRangeWithBaseStr:(NSString *)baseStr andAimStr:(NSString*)aimStr andBaseRange:(NSRange)baseRange resultArr:(NSMutableArray *)resultArr;
+
 @end
 
 NS_ASSUME_NONNULL_END

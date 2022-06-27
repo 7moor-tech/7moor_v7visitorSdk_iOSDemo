@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 3.7.3 - 2022.02.17
+//  version 3.8.1 - 2022.04.15
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 /*
@@ -232,6 +232,7 @@
 @property (nonatomic, copy) NSString *photoPreviewOriginDefImageName __attribute__((deprecated("Use -photoPreviewOriginDefImage.")));
 @property (nonatomic, copy) NSString *photoNumberIconImageName __attribute__((deprecated("Use -photoNumberIconImage.")));
 @property (nonatomic, strong) UIImage *takePictureImage;
+@property (nonatomic, strong) UIImage *addMorePhotoImage;
 @property (nonatomic, strong) UIImage *photoSelImage;
 @property (nonatomic, strong) UIImage *photoDefImage;
 @property (nonatomic, strong) UIImage *photoOriginSelImage;

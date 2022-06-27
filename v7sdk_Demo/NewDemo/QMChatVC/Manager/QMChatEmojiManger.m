@@ -53,6 +53,12 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:emjDict.copy];
+            [defaults setObject:data forKey:@"emojisDict"];
+            [defaults synchronize];
+            
             self.emojiList = items.copy;
             self.emojisDict = emjDict.copy;
             if (completion) {

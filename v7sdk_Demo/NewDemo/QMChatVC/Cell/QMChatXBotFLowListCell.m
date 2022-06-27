@@ -238,27 +238,44 @@
 }
 
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
     if ([URL.absoluteString hasPrefix:@"http"]) {
-        NSString *text = URL.absoluteString;
-        /// ulr =  http://7moor_param=(value)QM_recogType+http
+        NSString *text = [URL.absoluteString stringByRemovingPercentEncoding];;
         if ([text hasPrefix:@"http://7moor_param="]) {
-            text = [[text stringByReplacingOccurrencesOfString:@"http://7moor_param=" withString:@""] stringByRemovingPercentEncoding];
-            NSArray *items = [text componentsSeparatedByString:@"QM_recogType"];
+            text = [text stringByReplacingOccurrencesOfString:@"http://7moor_param=" withString:@""];
+            NSArray *items = [text componentsSeparatedByString:@"qm_actiontype"];
             if (items.count > 1) {
-                NSString *recogType = items.firstObject;
-                if ([recogType isEqualToString:@"4"]) {
-                    // 自定义事件
-                } else {
-                    NSString *value = items.lastObject;
+                NSString *actionType = items.firstObject;
+                NSString *value = [items.lastObject stringByReplacingOccurrencesOfString:@"/" withString:@""];
+                NSString *txtStr = [[NSUserDefaults standardUserDefaults] objectForKey:value];
+                if ([actionType isEqualToString:@"robottransferagent"] ||
+                    [actionType isEqualToString:@"transferagent"]) {
+                    // 转人工
                     if (self.sendText) {
-                        self.sendText(value);
+                        self.sendText(txtStr);
+                    }
+                } else {
+                    //自定义消息
+                    if (self.sendText) {
+                        self.sendText(txtStr);
                     }
                 }
             } else {
-                
-                if (self.sendText) {
-                    self.sendText(text);
+                NSArray *items = [text componentsSeparatedByString:@"QM_recogType"];
+                if (items.count > 1) {
+                    NSString *recogType = items.firstObject;
+                    if ([recogType isEqualToString:@"4"]) {
+                        // 自定义事件
+                    } else {
+                        NSString *value = items.lastObject;
+                        if (self.sendText) {
+                            self.sendText(value);
+                        }
+                    }
+                } else {
+                    if (self.sendText) {
+                        self.sendText(text);
+                    }
                 }
             }
         } else {

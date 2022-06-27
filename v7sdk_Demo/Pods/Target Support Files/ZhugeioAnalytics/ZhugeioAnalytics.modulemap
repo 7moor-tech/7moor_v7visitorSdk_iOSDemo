@@ -1,0 +1,6 @@
+framework module ZhugeioAnalytics {
+  umbrella header "ZhugeioAnalytics-umbrella.h"
+
+  export *
+  module * { export * }
+}

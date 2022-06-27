@@ -34,7 +34,6 @@
 
 //model
 #import "QMThemeManager.h"
-
 #import "QMChatManager.h"
 
 //tools

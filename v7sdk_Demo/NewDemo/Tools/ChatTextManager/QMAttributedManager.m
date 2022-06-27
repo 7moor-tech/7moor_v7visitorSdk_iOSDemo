@@ -113,7 +113,10 @@
         return obj1.range.location < obj2.range.location;
     }];
     
-    NSDictionary *emDict = QMChatEmojiManger.shared.emojisDict;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [defaults  objectForKey:@"emojisDict"];
+    NSDictionary *emDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
     NSMutableAttributedString *attr = attring.mutableCopy;
     for (NSTextCheckingResult *result in items) {
         if (result.range.location != NSNotFound) {

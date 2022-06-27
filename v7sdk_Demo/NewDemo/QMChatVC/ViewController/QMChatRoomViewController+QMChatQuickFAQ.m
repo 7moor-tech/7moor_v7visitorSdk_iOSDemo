@@ -330,7 +330,7 @@ static void *num_label = &num_label;
 - (void)closeQuickFAQ {
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.faqView removeFromSuperview];
         
         if (CGRectGetHeight(self.numBgView.frame) > 0 && self.numBgView.superview) {
@@ -347,7 +347,7 @@ static void *num_label = &num_label;
 
 - (void)closeQueueNum {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        self.chatTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.numBgView removeFromSuperview];
         
         if (self.faqData.count > 0 && self.faqView.superview) {

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *visitorHeadImg;
 
+@property (nonatomic, copy) NSString *visitorId;
+
 
 - (void)setValue:(nullable id)value forUndefinedKey:(NSString *)key;
 

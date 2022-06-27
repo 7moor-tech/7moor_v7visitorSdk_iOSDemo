@@ -79,9 +79,71 @@
     } else {
         if (QMChatEmojiManger.shared.emojisDict.count > 0) {
             QMAttributedManager *magr = [QMAttributedManager shared];
-            
             NSMutableAttributedString *attr = [magr filterText:msg.content skipFilterPhoneNum:msg.type == ChatMessageSend].mutableCopy;
-//            [attr addAttributes:@{NSForegroundColorAttributeName: textColor} range:NSMakeRange(0, attr.length)];
+            if (msg.type == ChatMessageRev) {
+                if ([QMThemeManager shared].agentSensitiveWordsFlag) {
+                    NSArray *wordsArr = [QMThemeManager.shared.agentSensitiveWords componentsSeparatedByString:@","];
+                    for (int i = 0; i < wordsArr.count; i++) {
+                        NSString *wordStr = wordsArr[i];
+                        if ([attr.string containsString:wordStr]) {
+                            NSMutableArray *result = [NSMutableArray array];
+                            result =  [QMChatMessage findAimstrAllRangeWithBaseStr:attr.string andAimStr:wordStr andBaseRange:NSMakeRange(0,attr.string.length) resultArr:result];
+                            for (int j = 0; j < result.count; j++) {
+                                NSRange range = [attr.string rangeOfString:wordStr];
+                                [attr replaceCharactersInRange:range withString:@"**"];
+                            }
+                        }
+                    }
+                }
+                if ([QMThemeManager shared].agentFocusWordsFlag) {
+                    NSArray *wordsArr = [QMThemeManager.shared.agentFocusWords componentsSeparatedByString:@","];
+                    for (int i = 0; i < wordsArr.count; i++) {
+                        NSString *wordStr = wordsArr[i];
+                        if ([attr.string containsString:wordStr]) {
+                            NSMutableArray *result = [NSMutableArray array];
+                            result =  [QMChatMessage findAimstrAllRangeWithBaseStr:attr.string andAimStr:wordStr andBaseRange:NSMakeRange(0,attr.string.length) resultArr:result];
+                            for (int j = 0; j < result.count; j++) {
+                                NSRange range =  NSRangeFromString(result[j]);
+                                UIColor *agentColor = [UIColor colorWithHexString:[QMThemeManager shared].agentFocusWordsColor];
+                                [attr addAttributes:@{NSForegroundColorAttributeName:agentColor} range:range];
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                NSArray *visitorFocusWords = [QMThemeManager.shared.visitorFocusWords componentsSeparatedByString:@","];
+                NSArray *visitorSensitiveWords = [QMThemeManager.shared.visitorSensitiveWords componentsSeparatedByString:@","];
+                NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:visitorFocusWords];
+                if ([QMThemeManager shared].visitorSensitiveWordsFlag) {
+                    for (int i = 0; i < visitorFocusWords.count; i++) {
+                        for (int j = 0; j < visitorSensitiveWords.count; j++) {
+                            if ([visitorFocusWords[i] isEqualToString:visitorSensitiveWords[j]]) {
+                                [tempArray removeObjectAtIndex:i];
+                            }
+                        }
+                    }
+                }
+                
+                if ([QMThemeManager shared].visitorFocusWordsFlag) {
+    
+                    for (int i = 0; i < tempArray.count; i++) {
+                        NSString *wordStr = tempArray[i];
+                        if ([msg.content containsString:wordStr]) {
+                            NSMutableArray *result = [NSMutableArray array];
+                            result =  [QMChatMessage findAimstrAllRangeWithBaseStr:attr.string andAimStr:wordStr andBaseRange:NSMakeRange(0,attr.string.length) resultArr:result];
+                            for (int j = 0; j < result.count; j++) {
+                                NSRange range =  NSRangeFromString(result[j]);
+                                if ([QMThemeManager.shared.visitorFocusWordsColor hasPrefix:@"#"]) {
+                                    UIColor *visitorColor = [UIColor colorWithHexString:QMThemeManager.shared.visitorFocusWordsColor];
+                                    
+                                    [attr addAttributes:@{NSForegroundColorAttributeName:visitorColor} range:range];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             msg.contentAttr = attr;
         }
 
@@ -103,6 +165,19 @@
         
     }
     return msg;
+}
+
++ (NSMutableArray *)findAimstrAllRangeWithBaseStr:(NSString *)baseStr andAimStr:(NSString*)aimStr andBaseRange:(NSRange)baseRange resultArr:(NSMutableArray *)resultArr
+{
+   
+    NSRange range = [baseStr rangeOfString:aimStr options:NSLiteralSearch range:baseRange];
+    if (range.length > 0) {
+        [resultArr addObject:NSStringFromRange(range)];
+        NSUInteger nextLocation = range.location + range.length;
+        NSRange rangeNew = NSMakeRange(nextLocation, baseStr.length - nextLocation);
+        [self findAimstrAllRangeWithBaseStr:baseStr andAimStr:aimStr andBaseRange:rangeNew resultArr:resultArr];
+    }
+    return resultArr;
 }
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {

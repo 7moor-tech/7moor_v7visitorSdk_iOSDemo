@@ -111,6 +111,30 @@ typedef enum : NSUInteger {
 //已读未读 UI 是否显示
 @property (nonatomic, assign) BOOL isShowRead;
 
+//访客关键词
+@property (nonatomic, copy) NSString *visitorFocusWords;
+//访客关键词是否开启
+@property (nonatomic, assign) BOOL visitorFocusWordsFlag;
+//访客关键词颜色
+@property (nonatomic, copy) NSString *visitorFocusWordsColor;
+
+//访客敏感词
+@property (nonatomic, copy) NSString *visitorSensitiveWords;
+//访客敏感词是否开启
+@property (nonatomic, assign) BOOL visitorSensitiveWordsFlag;
+
+//座席关键词
+@property (nonatomic, copy) NSString *agentFocusWords;
+//座席关键词是否开启
+@property (nonatomic, assign) BOOL agentFocusWordsFlag;
+//座席关键词颜色
+@property (nonatomic, copy) NSString *agentFocusWordsColor;
+
+//座席敏感词
+@property (nonatomic, copy) NSString *agentSensitiveWords;
+//座席敏感词是否开启
+@property (nonatomic, assign) BOOL agentSensitiveWordsFlag;
+
 //卡片按钮是否显示
 @property (nonatomic, assign) BOOL isHiddenCardBtn;
 //聊天头像

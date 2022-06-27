@@ -72,10 +72,13 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) QMChatInformation *currentChatInfor; //当前服务对象信息
 
 @property (nonatomic, assign) BOOL isAssociationInput; //联想输入是否开启
+@property (nonatomic, strong) NSRecursiveLock *dataLock;
 
 
 // 已读时间点--之前全部标记已读
 @property (nonatomic, assign) NSTimeInterval readTimeIntervall;
+
+//@property (nonatomic, strong) UIButton *nMessageScrollButton;
 
 
 // 第一次加载数据

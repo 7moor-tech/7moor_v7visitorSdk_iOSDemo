@@ -13,6 +13,8 @@
 #import "QMChatRoomViewController+ChatMessage.h"
 #import "QMChatRoomViewController+QMChatQuickFAQ.h"
 #import "QMChatRoomViewController+QMChatInput.h"
+#import "QMChatRoomViewController+NewMsgTip.h"
+
 #import "QMChatEmojiManger.h"
 #import <SDWebImage/SDWebImage.h>
 #import <MoorV7SDK/MoorV7SDK.h>
@@ -26,7 +28,6 @@
 
 @property (nonatomic, strong) QMConnectStatusView *connectView;
 
-@property (nonatomic, strong) NSRecursiveLock *dataLock;
 
 
 @end
@@ -94,6 +95,8 @@ int addCount = 10;
     [QMChatManager shared].connectDelegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatBottomList:) name:@"CHATBOTTOMLIST" object:nil];
+    // 添加预知输入通知
+    [self addToPredicttheInputNotification];
 
 }
 
@@ -153,9 +156,9 @@ int addCount = 10;
         self.title = QMThemeManager.shared.sdkTitleBarText;
     }
     
+    [self setupTableView];
     [self.view addSubview:self.chatTableView];
     [self.view addSubview:self.chatInputView];
-    [self setupTableView];
     [self.chatTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view).offset(_navHeight);
@@ -390,6 +393,7 @@ int addCount = 10;
         
         [self.dataLock lock];
         [self.dataSource setArray:datas];
+        [self hiddenMessageScrollButtopn];
         [UIView performWithoutAnimation:^{
             [self.chatTableView reloadData];
             [self scrollToBottom:YES];
@@ -409,7 +413,6 @@ int addCount = 10;
 
 - (void)loadNewMessageData:(NSString *)messageId {
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         [self consumeUnReadMessage];
         
         [self.dataLock lock];
@@ -486,12 +489,14 @@ int addCount = 10;
                         if ([existIds containsObject:model._id]) {
  //                                NSLog(@"相同不添加");
                         } else {
+                            model.newMsg = YES;
                             [self.dataSource addObject:model];
                             
                             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataSource.count - 1 inSection:0];
                             [indexPathArr addObject:indexPath];
 
                             if (model.eMessageType == QMMessageTypeCsrInvite) {
+                                model.newMsg = NO;
                                 containsCsrInvite = YES;
                             }
                             
@@ -501,14 +506,24 @@ int addCount = 10;
                 
             }
             
+            BOOL canScroll = [self checkCanScroolCurrentOffSet];
+            
             __block NSIndexPath *indexPath = indexPathArr.lastObject;
 
             if (containsCsrInvite) {
                 [UIView performWithoutAnimation:^{
                     [self.chatTableView reloadData];
                 }];
-                if (self.dataSource.count > 5) {
+                if (self.dataSource.count > 5 && canScroll) {
                     [self scrollToBottom:YES];
+                    /**
+                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.dataSource.count - 1 inSection:0];
+                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                         [UIView performWithoutAnimation:^{
+                             [self.chatTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:true];
+                         }];
+                     });
+                     */
                 }
 
             } else if (self.chatTableView.visibleCells.count > 0 && self.dataSource.count == lastCount + indexPathArr.count) {
@@ -516,10 +531,12 @@ int addCount = 10;
                 [UIView performWithoutAnimation:^{
                     [self.chatTableView insertRowsAtIndexPaths:indexPathArr withRowAnimation:UITableViewRowAnimationNone];
 
-                    if (self.dataSource.count != indexPath.row + 1) {
-                        indexPath = [NSIndexPath indexPathForRow:self.dataSource.count - 1 inSection:0];
+                    if (canScroll) {
+                        if (self.dataSource.count != indexPath.row + 1) {
+                            indexPath = [NSIndexPath indexPathForRow:self.dataSource.count - 1 inSection:0];
+                        }
+                        [self.chatTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                     }
-                    [self.chatTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
                 }];
 
 
@@ -1111,14 +1128,13 @@ int addCount = 10;
         _chatTableView.backgroundColor = [UIColor colorWithHexString:QMColor_Main_Bg_Light];
         _chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _chatTableView.rowHeight = UITableViewAutomaticDimension;
-        _chatTableView.estimatedRowHeight = 80;
+//        _chatTableView.estimatedRowHeight = 80;
         _chatTableView.decelerationRate = UIScrollViewDecelerationRateNormal;
         
         
         UITapGestureRecognizer * gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
         [_chatTableView addGestureRecognizer:gestureRecognizer];
         gestureRecognizer.cancelsTouchesInView = NO;
-
     }
     return _chatTableView;
 }
@@ -1186,6 +1202,13 @@ int addCount = 10;
         
     }];
 }
+
+//- (UIButton *)nMessageScrollButton {
+//    if (!_nMessageScrollButton) {
+//        _nMessageScrollButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    }
+//    return _nMessageScrollButton;
+//}
 
 #pragma mark - tapAction
 // 继续咨询

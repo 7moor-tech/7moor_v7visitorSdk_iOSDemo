@@ -11,7 +11,6 @@
 #import "QMChatRoomViewController.h"
 #import "AppDelegate.h"
 #import "QMChatShowFileViewController.h"
-#import "QiniuSDK.h"
 
 @interface QMFormDocumentCell ()
 

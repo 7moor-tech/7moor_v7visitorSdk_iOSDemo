@@ -7,17 +7,16 @@
 
 #import "ViewController.h"
 #import "QMChatRoomViewController.h"
-#import "SettingViewController.h"
 #import "QMLoadingHUD.h"
 #import "UIImage+Color.h"
 #import "QMChatEmojiManger.h"
 
-
-static NSString *k_qm_accessId = @"accessId";
+static NSString *k_qm_accessId = @"AccessId";
 
 @interface ViewController ()<QMRegisterDelegate>
 
 @property (nonatomic, strong) UIButton *customButton;
+
 @end
 
 @implementation ViewController
@@ -38,7 +37,6 @@ static NSString *k_qm_accessId = @"accessId";
 
     self.view.backgroundColor = UIColor.whiteColor;
     
-
     [self layoutViews];
     
 }
@@ -64,33 +62,11 @@ static NSString *k_qm_accessId = @"accessId";
         make.right.equalTo(self.view).offset(-40);
     }];
     
-//    UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [setBtn setTitle:@"设置" forState:UIControlStateNormal];
-//    [setBtn setTitleColor:UIColor.redColor forState:UIControlStateNormal];
-//    [setBtn addTarget:self action:@selector(settingAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:setBtn];
-    
-//    UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gradual"]];
-//    [self.customButton addSubview:bgView];
-//    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.customButton);
-//    }];
-    
-//    [setBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.customButton.mas_bottom).offset(60);
-//        make.centerX.equalTo(self.customButton);
-//        make.width.mas_equalTo(50);
-//        make.height.mas_equalTo(30);
-//    }];
-    
-    
 }
 
 - (UIButton *)customButton {
     if (!_customButton) {
         _customButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//        button.frame = CGRectMake(25, QM_kScreenHeight - 100, QM_kScreenWidth - 50, 50);
-//        _customButton.backgroundColor = [UIColor colorWithHexString:@"#0081FF"];
         [_customButton setTitle:@"点击咨询" forState:UIControlStateNormal];
         [_customButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_customButton setBackgroundImage:[UIImage imageFromColor:k_QMRGB(0, 170, 134)] forState:UIControlStateNormal];
@@ -101,12 +77,6 @@ static NSString *k_qm_accessId = @"accessId";
         [self.view addSubview:_customButton];
     }
     return _customButton;
-}
-
-- (void)settingAction:(UIButton *)sender {
-    SettingViewController *setVC = [SettingViewController new];
-    
-    [self.navigationController pushViewController:setVC animated:YES];
 }
 
 - (void)buttonAction:(UIButton *)button {
@@ -137,8 +107,19 @@ static NSString *k_qm_accessId = @"accessId";
 
             [QMThemeManager shared].isHiddenAddBtn = NO;
             if ([globalConfig isKindOfClass:[NSDictionary class]]) {
+                
                 QMThemeManager.shared.isVisitorTypeNotice = [globalConfig[@"isVisitorTypeNotice"] boolValue];
                 [QMThemeManager shared].isShowRead = [globalConfig[@"isAgentReadMessage"] boolValue];
+                [QMThemeManager shared].visitorFocusWords = globalConfig[@"visitorFocusWords"];
+                [QMThemeManager shared].visitorFocusWordsFlag = [globalConfig[@"visitorFocusWordsFlag"] boolValue];
+                [QMThemeManager shared].visitorFocusWordsColor = globalConfig[@"visitorFocusWordsColor"];
+                [QMThemeManager shared].visitorSensitiveWords = globalConfig[@"visitorSensitiveWords"];
+                [QMThemeManager shared].visitorSensitiveWordsFlag = [globalConfig[@"visitorSensitiveWordsFlag"] boolValue];
+                [QMThemeManager shared].agentFocusWords = globalConfig[@"agentFocusWords"];
+                [QMThemeManager shared].agentFocusWordsFlag = [globalConfig[@"agentFocusWordsFlag"] boolValue];
+                [QMThemeManager shared].agentFocusWordsColor = globalConfig[@"agentFocusWordsColor"];
+                [QMThemeManager shared].agentSensitiveWords = globalConfig[@"agentSensitiveWords"];
+                [QMThemeManager shared].agentSensitiveWordsFlag = [globalConfig[@"agentSensitiveWordsFlag"] boolValue];
             }
             NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"MoorV7Bundle" ofType:@"bundle"];
             NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
@@ -173,9 +154,6 @@ static NSString *k_qm_accessId = @"accessId";
     
     [[QMClient shared] initSDKWithModel:^(QMClientModel * _Nonnull server) {
         server.accessId = k_qm_accessId;
-//        server.userName = @"星语";
-//        server.userId = @"53213566";
-        
         server.userName = userName;
         server.userId = userId;
 
@@ -183,24 +161,13 @@ static NSString *k_qm_accessId = @"accessId";
         server.account = QMThemeManager.shared.account;
         [QMChatManager.shared setDelegate];
     } completion:^(NSDictionary * dict) {
+        NSLog(@"----------");
         if (dict && [dict[@"success"] intValue] == 1) {
             [self registerSuccess];
         } else {
             [self registerFailure:dict];
         }
     }];
-    
-//    [[QMClient shared] initSDK:self block:^(QMClientModel * _Nonnull server) {
-//        server.accessId = k_qm_accessId;
-////        server.userName = userName;
-////        server.userId = userId;
-//        server.userName = @"星语";
-//        server.userId = @"53213566";
-//        server.visitorHeadImg = @"http://test-bucket.dmallcdn.com/userIcon/202101252008/aaf8f289-12c8-4939-be05-656fbd0c7fbf";
-//        server.account = QMThemeManager.shared.account;
-//        [QMChatManager.shared setDelegate];
-////        server.account = @"4000343";
-//    }];
     
 }
 
@@ -210,7 +177,7 @@ static NSString *k_qm_accessId = @"accessId";
     [QMConnect sdkGetEmojiRUL:^(NSDictionary * _Nonnull data) {
         [QMChatEmojiManger.shared handleEmojiData:data completion:^{
             
-            [wSelf newSession];
+            [wSelf pushViewController];
         }];
 
     } failure:^(NSDictionary * _Nonnull error) {
@@ -223,34 +190,35 @@ static NSString *k_qm_accessId = @"accessId";
 
 - (void)registerFailure:(NSDictionary *)reason {
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *message = [reason valueForKey:@"message"];
         [QMLoadingHUD hidden];
+        if (message.length > 0) {
+            [QMRemind showMessage:message];
+        }
+        [[QMClient shared] disconnectSocket];
     });
-
 }
 
-- (void)newSession {
-
-    [QMConnect sdkNewSession:^(NSDictionary * _Nonnull data) {
-        [self pushViewController];
-    } failure:^(NSDictionary * _Nonnull error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *message = [error valueForKey:@"message"];
-            [QMLoadingHUD hidden];
-            if (message.length > 0) {
-                [QMRemind showMessage:message];
-            }
-            [[QMClient shared] disconnectSocket];
-
-        });
-    }];
-
-}
+//- (void)newSession {
+//
+//    [QMConnect sdkNewSession:^(NSDictionary * _Nonnull data) {
+//        [self pushViewController];
+//    } failure:^(NSDictionary * _Nonnull error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSString *message = [error valueForKey:@"message"];
+//            [QMLoadingHUD hidden];
+//            if (message.length > 0) {
+//                [QMRemind showMessage:message];
+//            }
+//            [[QMClient shared] disconnectSocket];
+//
+//        });
+//    }];
+//
+//}
 
 - (void)pushViewController {
 
-
-//    model.logoutTitle = @"返回";
-//    model.iconModel.isIcon = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         [QMLoadingHUD hidden];
 
@@ -259,5 +227,6 @@ static NSString *k_qm_accessId = @"accessId";
         [self.navigationController pushViewController:chatVC animated:YES];
     });
 }
+
 
 @end

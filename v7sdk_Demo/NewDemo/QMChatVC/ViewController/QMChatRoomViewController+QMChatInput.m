@@ -32,7 +32,7 @@
     text = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [QMConnect sdkInputTypeNotice:text completion:^(NSDictionary * dict) {
-        NSLog(@"dict = %@",dict);
+//        NSLog(@"dict = %@",dict);
     } failure:^(NSError * err) {
         NSLog(@"err = %@",err.localizedDescription);
     }];
@@ -165,7 +165,7 @@
     }
 }
 - (void)pictureBtnAction {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:5 delegate:nil];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:nil];
     imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         for (UIImage *image in photos) {

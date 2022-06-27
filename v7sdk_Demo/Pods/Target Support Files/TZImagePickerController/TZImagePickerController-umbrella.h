@@ -13,6 +13,7 @@
 #import "NSBundle+TZImagePicker.h"
 #import "TZAssetCell.h"
 #import "TZAssetModel.h"
+#import "TZAuthLimitedFooterTipView.h"
 #import "TZGifPhotoPreviewController.h"
 #import "TZImageCropManager.h"
 #import "TZImageManager.h"

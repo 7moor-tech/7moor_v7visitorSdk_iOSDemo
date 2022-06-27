@@ -1,9 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 
 
-
 platform :ios, '9.0'
-
 
 target 'NewDemo' do
 
@@ -11,12 +9,12 @@ target 'NewDemo' do
   
   use_frameworks!
 
-  pod 'SDWebImage'
+  pod 'SDWebImage', '~> 5.12.5'
   pod 'Masonry', '~> 1.1.0'
   pod 'TZImagePickerController'
   pod 'AFNetworking/Reachability'
   pod 'MJRefresh', '~> 3.6.1'
-  pod 'MoorV7SDK', '~> 1.5.0'
+  pod 'MoorV7SDK', '~> 1.6.2'
 
   
 end
